@@ -11,7 +11,7 @@ import { UniverUIPlugin } from '@univerjs/ui'
 import { FUniver } from '@univerjs/facade'
 import { locales } from './locale'
 
-export function setupUniver () {
+export function setupUniver() {
   const univer = new Univer({
     theme: defaultTheme,
     locale: LocaleType.ZH_CN,
@@ -20,16 +20,14 @@ export function setupUniver () {
   })
 
   // core plugins
-  univer.registerPlugin(UniverRenderEnginePlugin);
-  univer.registerPlugin(UniverFormulaEnginePlugin);
+  univer.registerPlugin(UniverRenderEnginePlugin)
+  univer.registerPlugin(UniverFormulaEnginePlugin)
   univer.registerPlugin(UniverUIPlugin, {
     container: 'univer',
     header: true,
     toolbar: true,
-  });
-  univer.registerPlugin(UniverDocsPlugin, {
-    standalone: true,
-  });
+  })
+  univer.registerPlugin(UniverDocsPlugin)
   univer.registerPlugin(UniverDocsUIPlugin, {
     container: 'univerdoc',
     layout: {
@@ -37,7 +35,7 @@ export function setupUniver () {
         innerLeft: false,
       },
     },
-  });
+  })
 
   univer.createUniverDoc({
     body: {
@@ -58,7 +56,7 @@ export function setupUniver () {
         centerAngle: 0,
       },
     },
-  });
+  })
 
   return FUniver.newAPI(univer)
 }
