@@ -25,7 +25,6 @@ export function setupUniver() {
   univer.registerPlugin(UniverUIPlugin, {
     container: 'univer',
     header: true,
-    toolbar: true,
   })
   univer.registerPlugin(UniverDocsPlugin)
   univer.registerPlugin(UniverDocsUIPlugin, {
@@ -39,8 +38,17 @@ export function setupUniver() {
 
   univer.createUniverDoc({
     body: {
-      dataStream:
-        'Hello, World!\r\rUniver is a set of enterprise document and data collaboration solutions.\r\n',
+      dataStream: '\r\n',
+      paragraphs: [
+        {
+          startIndex: 0,
+        },
+      ],
+      sectionBreaks: [
+        {
+          startIndex: 1,
+        },
+      ],
     },
     documentStyle: {
       pageSize: {
@@ -58,5 +66,9 @@ export function setupUniver() {
     },
   })
 
-  return FUniver.newAPI(univer)
+  const univerAPI = FUniver.newAPI(univer)
+
+  univerAPI.getActiveDocument()?.appendText('Hello World!')
+
+  return univerAPI
 }
