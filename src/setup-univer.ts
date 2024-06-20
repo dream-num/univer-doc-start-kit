@@ -1,7 +1,7 @@
 import '@univerjs/design/lib/index.css'
 import '@univerjs/ui/lib/index.css'
 
-import { LocaleType, LogLevel, Univer } from '@univerjs/core'
+import { LocaleType, LogLevel, Univer, UniverInstanceType } from '@univerjs/core'
 import { defaultTheme } from '@univerjs/design'
 import { UniverDocsPlugin } from '@univerjs/docs'
 import { UniverDocsUIPlugin } from '@univerjs/docs-ui'
@@ -10,6 +10,7 @@ import { UniverRenderEnginePlugin, ptToPixel } from '@univerjs/engine-render'
 import { UniverUIPlugin } from '@univerjs/ui'
 import { FUniver } from '@univerjs/facade'
 import { locales } from './locale'
+import { convertPureStringToUDM } from './libs/convertPureStringToUDM'
 
 export function setupUniver() {
   const univer = new Univer({
@@ -36,20 +37,8 @@ export function setupUniver() {
     },
   })
 
-  univer.createUniverDoc({
-    body: {
-      dataStream: '\r\n',
-      paragraphs: [
-        {
-          startIndex: 0,
-        },
-      ],
-      sectionBreaks: [
-        {
-          startIndex: 1,
-        },
-      ],
-    },
+  univer.createUnit(UniverInstanceType.UNIVER_DOC, {
+    body: convertPureStringToUDM(''),
     documentStyle: {
       pageSize: {
         width: ptToPixel(595),
