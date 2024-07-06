@@ -22,6 +22,7 @@ export function convertPureStringToUDM(text: string): IDocumentBody {
 
   const body: IDocumentBody = {
     dataStream: preText,
+    textRuns: [],
     paragraphs: [],
     sectionBreaks: [],
   }
@@ -51,6 +52,7 @@ export function convertPureStringToUDM(text: string): IDocumentBody {
 export function emptyUDM(): IDocumentBody {
   return {
     dataStream: '\r\n',
+    textRuns: [],
     paragraphs: [
       {
         startIndex: 0,
