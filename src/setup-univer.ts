@@ -65,6 +65,7 @@ export function setupUniver() {
     drawingsOrder: [],
     headers: {},
     footers: {},
+    tableSource: {},
     documentStyle: {
       documentFlavor: DocumentFlavor.TRADITIONAL, // enable header and footer
       pageSize: {
