@@ -59,35 +59,37 @@ export function setupUniver() {
   univer.registerPlugin(UniverDocsDrawingPlugin)
   univer.registerPlugin(UniverDocsDrawingUIPlugin)
 
-  univer.createUnit<IDocumentData, DocumentDataModel>(UniverInstanceType.UNIVER_DOC, {
-    body: convertPureStringToUDM(''),
-    drawings: {},
-    drawingsOrder: [],
-    headers: {},
-    footers: {},
-    tableSource: {},
-    documentStyle: {
-      documentFlavor: DocumentFlavor.TRADITIONAL, // enable header and footer
-      pageSize: {
-        width: ptToPixel(595),
-        height: ptToPixel(842),
+  setTimeout(() => {
+    univer.createUnit<IDocumentData, DocumentDataModel>(UniverInstanceType.UNIVER_DOC, {
+      body: convertPureStringToUDM(''),
+      drawings: {},
+      drawingsOrder: [],
+      headers: {},
+      footers: {},
+      tableSource: {},
+      documentStyle: {
+        documentFlavor: DocumentFlavor.TRADITIONAL, // enable header and footer
+        pageSize: {
+          width: ptToPixel(595),
+          height: ptToPixel(842),
+        },
+        marginTop: ptToPixel(50),
+        marginBottom: ptToPixel(50),
+        marginRight: ptToPixel(40),
+        marginLeft: ptToPixel(40),
+        renderConfig: {
+          vertexAngle: 0,
+          centerAngle: 0,
+        },
+        defaultHeaderId: '',
+        defaultFooterId: '',
+        evenPageHeaderId: '',
+        evenPageFooterId: '',
+        firstPageHeaderId: '',
+        firstPageFooterId: '',
       },
-      marginTop: ptToPixel(50),
-      marginBottom: ptToPixel(50),
-      marginRight: ptToPixel(40),
-      marginLeft: ptToPixel(40),
-      renderConfig: {
-        vertexAngle: 0,
-        centerAngle: 0,
-      },
-      defaultHeaderId: '',
-      defaultFooterId: '',
-      evenPageHeaderId: '',
-      evenPageFooterId: '',
-      firstPageHeaderId: '',
-      firstPageFooterId: '',
-    },
-  })
+    })
+  }, 0)
 
   const univerAPI = FUniver.newAPI(univer)
 
