@@ -11,5 +11,9 @@ export default antfu({
   },
   rules: {
     "jsonc/sort-keys": "off",
+    "style/quotes": "off",
+    "style/semi": "off",
+    "format/prettier": "off",
+    "yaml/quotes": "off",
   },
 });
