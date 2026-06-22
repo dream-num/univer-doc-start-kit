@@ -1,5 +1,5 @@
-import process from "node:process";
 import { resolve } from "node:path";
+import process from "node:process";
 import { fileURLToPath } from "node:url";
 import { defineConfig, loadEnv } from "vite";
 

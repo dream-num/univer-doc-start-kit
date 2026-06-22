@@ -1,6 +1,6 @@
-import "./style.css";
-
 import { demos } from "./demos";
+
+import "./style.css";
 
 function createElement<K extends keyof HTMLElementTagNameMap>(
   tagName: K,

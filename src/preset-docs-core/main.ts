@@ -1,10 +1,3 @@
-import "../style.css";
-
-import "@univerjs/preset-docs-core/lib/index.css";
-import "@univerjs/preset-docs-drawing/lib/index.css";
-import "@univerjs/preset-docs-hyper-link/lib/index.css";
-import "@univerjs/preset-docs-thread-comment/lib/index.css";
-
 import { UniverDocsCorePreset } from "@univerjs/preset-docs-core";
 import UniverPresetDocsCoreEnUs from "@univerjs/preset-docs-core/locales/en-US";
 import { UniverDocsDrawingPreset } from "@univerjs/preset-docs-drawing";
@@ -14,6 +7,11 @@ import UniverPresetDocsHyperLinkEnUs from "@univerjs/preset-docs-hyper-link/loca
 import { UniverDocsThreadCommentPreset } from "@univerjs/preset-docs-thread-comment";
 import UniverPresetDocsThreadCommentEnUs from "@univerjs/preset-docs-thread-comment/locales/en-US";
 import { LocaleType, LogLevel, createUniver, defaultTheme, mergeLocales } from "@univerjs/presets";
+import "../style.css";
+import "@univerjs/preset-docs-core/lib/index.css";
+import "@univerjs/preset-docs-drawing/lib/index.css";
+import "@univerjs/preset-docs-hyper-link/lib/index.css";
+import "@univerjs/preset-docs-thread-comment/lib/index.css";
 
 const { univer, univerAPI } = createUniver({
   locale: LocaleType.EN_US,

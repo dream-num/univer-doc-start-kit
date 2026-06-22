@@ -1,12 +1,3 @@
-import "../style.css";
-
-import "@univerjs/preset-docs-core/lib/index.css";
-import "@univerjs/preset-docs-drawing/lib/index.css";
-import "@univerjs/preset-docs-hyper-link/lib/index.css";
-import "@univerjs/preset-docs-thread-comment/lib/index.css";
-import "@univerjs/preset-docs-advanced/lib/index.css";
-import "@univerjs/preset-docs-collaboration/lib/index.css";
-
 import { UniverDocsAdvancedPreset } from "@univerjs/preset-docs-advanced";
 import UniverPresetDocsAdvancedEnUs from "@univerjs/preset-docs-advanced/locales/en-US";
 import { UniverDocsCollaborationPreset } from "@univerjs/preset-docs-collaboration";
@@ -27,6 +18,13 @@ import {
   defaultTheme,
   mergeLocales,
 } from "@univerjs/presets";
+import "../style.css";
+import "@univerjs/preset-docs-core/lib/index.css";
+import "@univerjs/preset-docs-drawing/lib/index.css";
+import "@univerjs/preset-docs-hyper-link/lib/index.css";
+import "@univerjs/preset-docs-thread-comment/lib/index.css";
+import "@univerjs/preset-docs-advanced/lib/index.css";
+import "@univerjs/preset-docs-collaboration/lib/index.css";
 
 const { univer, univerAPI } = createUniver({
   locale: LocaleType.EN_US,
