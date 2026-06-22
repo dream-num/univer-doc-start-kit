@@ -1,6 +1,6 @@
 {
   "name": "univer-doc-start-kit",
-  "version": "0.0.0",
+  "version": "0.25.0-insiders.20260622-8734e15",
   "private": true,
   "description": "A starter kit for Univer Document",
   "type": "module",
@@ -24,11 +24,12 @@
     "react-dom": "19.2.6"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "2.22.0-beta.3",
+    "@antfu/eslint-config": "4.14.1",
     "@types/node": "25.9.0",
-    "eslint": "9.6.0",
-    "eslint-plugin-format": "0.1.2",
-    "lint-staged": "15.2.7",
+    "@univerjs/vite-plugin": "^0.5.1",
+    "eslint": "^9.28.0",
+    "eslint-plugin-format": "^1.0.1",
+    "lint-staged": "^16.1.0",
     "oxfmt": "^0.55.0",
     "oxlint": "^1.70.0",
     "simple-git-hooks": "^2.13.1",
