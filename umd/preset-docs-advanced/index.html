@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UMD Preset Docs Advanced</title>
+
+    <script
+      src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://unpkg.com/rxjs@7.8.1/dist/bundles/rxjs.umd.min.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <script src="/node_modules/@univerjs/presets/lib/umd/index.js"></script>
+
+    <script src="/node_modules/@univerjs/preset-docs-core/lib/umd/index.js"></script>
+    <script src="/node_modules/@univerjs/preset-docs-core/lib/umd/locales/en-US.js"></script>
+    <link rel="stylesheet" href="/node_modules/@univerjs/preset-docs-core/lib/index.css" />
+
+    <script src="/node_modules/@univerjs/preset-docs-drawing/lib/umd/index.js"></script>
+    <script src="/node_modules/@univerjs/preset-docs-drawing/lib/umd/locales/en-US.js"></script>
+    <link rel="stylesheet" href="/node_modules/@univerjs/preset-docs-drawing/lib/index.css" />
+
+    <script src="/node_modules/@univerjs/preset-docs-hyper-link/lib/umd/index.js"></script>
+    <script src="/node_modules/@univerjs/preset-docs-hyper-link/lib/umd/locales/en-US.js"></script>
+    <link rel="stylesheet" href="/node_modules/@univerjs/preset-docs-hyper-link/lib/index.css" />
+
+    <script src="/node_modules/@univerjs/preset-docs-thread-comment/lib/umd/index.js"></script>
+    <script src="/node_modules/@univerjs/preset-docs-thread-comment/lib/umd/locales/en-US.js"></script>
+    <link
+      rel="stylesheet"
+      href="/node_modules/@univerjs/preset-docs-thread-comment/lib/index.css"
+    />
+
+    <script src="/node_modules/@univerjs/preset-docs-advanced/lib/umd/index.js"></script>
+    <script src="/node_modules/@univerjs/preset-docs-advanced/lib/umd/locales/en-US.js"></script>
+    <link rel="stylesheet" href="/node_modules/@univerjs/preset-docs-advanced/lib/index.css" />
+
+    <style>
+      html,
+      body,
+      #app {
+        margin: 0;
+        padding: 0;
+        width: 100vw;
+        height: 100vh;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <script>
+      const { createUniver, defaultTheme } = UniverPresets;
+      const { LocaleType, LogLevel, mergeLocales } = UniverCore;
+      const { UniverDocsCorePreset } = UniverPresetDocsCore;
+      const { UniverDocsDrawingPreset } = UniverPresetDocsDrawing;
+      const { UniverDocsHyperLinkPreset } = UniverPresetDocsHyperLink;
+      const { UniverDocsThreadCommentPreset } = UniverPresetDocsThreadComment;
+      const { UniverDocsAdvancedPreset } = UniverPresetDocsAdvanced;
+
+      const { univer, univerAPI } = createUniver({
+        locale: LocaleType.EN_US,
+        locales: {
+          enUS: mergeLocales(
+            UniverPresetDocsCoreEnUS,
+            UniverPresetDocsDrawingEnUS,
+            UniverPresetDocsHyperLinkEnUS,
+            UniverPresetDocsThreadCommentEnUS,
+            UniverPresetDocsAdvancedEnUS,
+          ),
+        },
+        logLevel: LogLevel.VERBOSE,
+        theme: defaultTheme,
+        presets: [
+          UniverDocsCorePreset({
+            container: "app",
+          }),
+          UniverDocsDrawingPreset(),
+          UniverDocsHyperLinkPreset(),
+          UniverDocsThreadCommentPreset(),
+          UniverDocsAdvancedPreset({
+            license: "",
+          }),
+        ],
+      });
+
+      univerAPI.createDocument({ title: "UMD Preset Docs Advanced" });
+
+      window.univer = univer;
+      window.univerAPI = univerAPI;
+    </script>
+  </body>
+</html>

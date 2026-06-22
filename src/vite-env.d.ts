@@ -1,9 +1,10 @@
 /// <reference types="vite/client" />
 
-import type { FUniver } from '@univerjs/presets'
+import type { FUniver, Univer } from "@univerjs/presets";
 
 declare global {
   interface Window {
-    univerAPI: FUniver
+    univer: Univer;
+    univerAPI: FUniver;
   }
 }

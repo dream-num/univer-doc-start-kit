@@ -1,32 +1,48 @@
 {
   "name": "univer-doc-start-kit",
-  "type": "module",
   "version": "0.0.0",
   "private": true,
   "description": "A starter kit for Univer Document",
+  "type": "module",
   "scripts": {
     "prepare": "simple-git-hooks",
     "dev": "vite",
     "build": "tsc && vite build",
+    "test": "node --experimental-strip-types --test src/demos.test.ts",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
   "dependencies": {
-    "@univerjs/presets": "0.6.2"
+    "@univerjs/preset-docs-advanced": "0.25.0-insiders.20260622-8734e15",
+    "@univerjs/preset-docs-collaboration": "0.25.0-insiders.20260622-8734e15",
+    "@univerjs/preset-docs-core": "0.25.0-insiders.20260622-8734e15",
+    "@univerjs/preset-docs-drawing": "0.25.0-insiders.20260622-8734e15",
+    "@univerjs/preset-docs-hyper-link": "0.25.0-insiders.20260622-8734e15",
+    "@univerjs/preset-docs-thread-comment": "0.25.0-insiders.20260622-8734e15",
+    "@univerjs/presets": "0.25.0-insiders.20260622-8734e15",
+    "react": "19.2.6",
+    "react-dom": "19.2.6"
   },
   "devDependencies": {
     "@antfu/eslint-config": "2.22.0-beta.3",
-    "eslint": "^9.6.0",
-    "eslint-plugin-format": "^0.1.2",
-    "lint-staged": "^15.2.7",
-    "simple-git-hooks": "^2.11.1",
-    "typescript": "^5.5.3",
-    "vite": "^5.3.3"
+    "@types/node": "25.9.0",
+    "eslint": "9.6.0",
+    "eslint-plugin-format": "0.1.2",
+    "lint-staged": "15.2.7",
+    "oxfmt": "^0.55.0",
+    "oxlint": "^1.70.0",
+    "simple-git-hooks": "^2.13.1",
+    "typescript": "^6.0.3",
+    "vite": "^8.0.13"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm lint-staged"
   },
   "lint-staged": {
-    "*": "eslint --fix"
+    "*.{js,mjs,cjs,ts,mts,cts,tsx,jsx}": [
+      "oxlint --fix",
+      "oxfmt --write"
+    ],
+    "*.{css,html,md,json,jsonc,yaml,yml}": "oxfmt --write"
   }
 }

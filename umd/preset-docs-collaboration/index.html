@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UMD Preset Docs Collaboration</title>
+
+    <script
+      src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://unpkg.com/rxjs@7.8.1/dist/bundles/rxjs.umd.min.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <script src="/node_modules/@univerjs/presets/lib/umd/index.js"></script>
+
+    <script src="/node_modules/@univerjs/preset-docs-core/lib/umd/index.js"></script>
+    <script src="/node_modules/@univerjs/preset-docs-core/lib/umd/locales/en-US.js"></script>
+    <link rel="stylesheet" href="/node_modules/@univerjs/preset-docs-core/lib/index.css" />
+
+    <script src="/node_modules/@univerjs/preset-docs-drawing/lib/umd/index.js"></script>
+    <script src="/node_modules/@univerjs/preset-docs-drawing/lib/umd/locales/en-US.js"></script>
+    <link rel="stylesheet" href="/node_modules/@univerjs/preset-docs-drawing/lib/index.css" />
+
+    <script src="/node_modules/@univerjs/preset-docs-hyper-link/lib/umd/index.js"></script>
+    <script src="/node_modules/@univerjs/preset-docs-hyper-link/lib/umd/locales/en-US.js"></script>
+    <link rel="stylesheet" href="/node_modules/@univerjs/preset-docs-hyper-link/lib/index.css" />
+
+    <script src="/node_modules/@univerjs/preset-docs-thread-comment/lib/umd/index.js"></script>
+    <script src="/node_modules/@univerjs/preset-docs-thread-comment/lib/umd/locales/en-US.js"></script>
+    <link
+      rel="stylesheet"
+      href="/node_modules/@univerjs/preset-docs-thread-comment/lib/index.css"
+    />
+
+    <script src="/node_modules/@univerjs/preset-docs-advanced/lib/umd/index.js"></script>
+    <script src="/node_modules/@univerjs/preset-docs-advanced/lib/umd/locales/en-US.js"></script>
+    <link rel="stylesheet" href="/node_modules/@univerjs/preset-docs-advanced/lib/index.css" />
+
+    <script src="/node_modules/@univerjs/preset-docs-collaboration/lib/umd/index.js"></script>
+    <script src="/node_modules/@univerjs/preset-docs-collaboration/lib/umd/locales/en-US.js"></script>
+    <link rel="stylesheet" href="/node_modules/@univerjs/preset-docs-collaboration/lib/index.css" />
+
+    <style>
+      html,
+      body,
+      #app {
+        margin: 0;
+        padding: 0;
+        width: 100vw;
+        height: 100vh;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <script>
+      const { createUniver, defaultTheme } = UniverPresets;
+      const { LocaleType, LogLevel, mergeLocales } = UniverCore;
+      const { UniverDocsCorePreset } = UniverPresetDocsCore;
+      const { UniverDocsDrawingPreset } = UniverPresetDocsDrawing;
+      const { UniverDocsHyperLinkPreset } = UniverPresetDocsHyperLink;
+      const { UniverDocsThreadCommentPreset } = UniverPresetDocsThreadComment;
+      const { UniverDocsAdvancedPreset } = UniverPresetDocsAdvanced;
+
+      const { univer, univerAPI } = UniverPresets.createUniver({
+        locale: LocaleType.EN_US,
+        locales: {
+          enUS: mergeLocales(
+            UniverPresetDocsCoreEnUS,
+            UniverPresetDocsDrawingEnUS,
+            UniverPresetDocsHyperLinkEnUS,
+            UniverPresetDocsThreadCommentEnUS,
+            UniverPresetDocsAdvancedEnUS,
+            UniverPresetDocsCollaborationEnUS,
+          ),
+        },
+        collaboration: true,
+        logLevel: LogLevel.VERBOSE,
+        theme: defaultTheme,
+        presets: [
+          UniverDocsCorePreset({
+            container: "app",
+          }),
+          UniverDocsDrawingPreset({
+            collaboration: true,
+          }),
+          UniverDocsHyperLinkPreset(),
+          UniverDocsThreadCommentPreset(),
+          UniverDocsAdvancedPreset({
+            license: "",
+          }),
+          UniverDocsCollaborationPreset(),
+        ],
+      });
+
+      window.univer = univer;
+      window.univerAPI = univerAPI;
+
+      // check if the unit is already created
+      const url = new URL(window.location.href);
+      const unit = url.searchParams.get("unit");
+      if (unit) {
+        // waiting for the unit to be loaded
+      } else {
+        fetch(`/universer-api/snapshot/${UniverInstanceType.UNIVER_DOC}/unit/-/create`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            type: UniverInstanceType.UNIVER_DOC,
+            name: "New Sheet By Univer",
+            creator: "user",
+          }),
+        })
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Failed to create new sheet");
+            }
+
+            return response.json();
+          })
+          .then((data) => {
+            if (!data.unitID) {
+              throw new Error("create unit failed");
+            }
+
+            url.searchParams.set("unit", data.unitID);
+            url.searchParams.set("type", String(UniverInstanceType.UNIVER_DOC));
+            window.location.href = url.toString();
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      }
+    </script>
+  </body>
+</html>
