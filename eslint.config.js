@@ -9,4 +9,7 @@ export default antfu({
     html: true,
     markdown: "prettier",
   },
+  rules: {
+    "jsonc/sort-keys": "off",
+  },
 });
